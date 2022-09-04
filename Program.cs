@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 internal class Program
@@ -26,50 +26,50 @@ internal class Program
         while (exit == false)
         {
             Console.WriteLine($"Для добавления нового досье, введите - {Add}, " +
-                $"для просмотра всех досье - { Show}, для удаления досье - {Delete}, для выхода их программы - {Exit}");
+                $"для просмотра всех досье - {Show}, для удаления досье - {Delete}, для выхода их программы - {Exit}");
             string UserChoice = Console.ReadLine();
 
             switch (UserChoice)
             {
                 case Add:
-
                     AddDossier(dossiers);
-
                     break;
 
                 case Show:
-
                     ShowDossier(dossiers);
-
                     break;
 
                 case Delete:
-
                     DeleteDossier(dossiers);
-
                     break;
 
                 case Exit:
-
                     exit = true;
-
                     break;
             }
         }
     }
 
     static void AddDossier(Dictionary<string, string> dossiers)
-    {     
+    {
         Console.WriteLine("Введите ФИО сотрудника: ");
         string key = Console.ReadLine();
         Console.WriteLine("Введите должность сотрудника: ");
         string value = Console.ReadLine();
-        dossiers.Add(key, value);
+
+        if (dossiers.ContainsKey(key) == false)
+        {
+            dossiers.Add(key, value);
+        }
+        else
+        {
+            Console.WriteLine("Этот сотрудник уже добавлен");
+        }
     }
 
     static void ShowDossier(Dictionary<string, string> dossiers)
     {
-        foreach(var dossier in dossiers)
+        foreach (var dossier in dossiers)
         {
             Console.WriteLine($"{dossier.Key} - {dossier.Value}");
         }
